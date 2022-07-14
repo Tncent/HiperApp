@@ -14,12 +14,32 @@ Pipes::Pipes(QWidget *parent)
     setAttribute(Qt::WA_NoBackground, true);
     setAttribute(Qt::WA_NoSystemBackground, true);
     ui->textEdit_2->setAlignment( Qt::AlignCenter|Qt::AlignBottom|Qt::AlignHCenter );
+
+
+    if(check("%Systemroot%\\System32\\drivers\\tap0901.sys")){
+        ui->toolButton_2->setDisabled(true);
+        ui->toolButton_3->setDisabled(true);
+        ui->pushButton_2->setDisabled(true);
+        ui->toolButton->setDisabled(false);
+    }
+    else{
+        ui->toolButton_2->setDisabled(false);
+        ui->toolButton_3->setDisabled(false);
+        ui->pushButton_2->setDisabled(false);
+        ui->toolButton->setDisabled(true);
+    }
 }
 
 Pipes::~Pipes()
 {
     delete ui;
 }
+
+bool Pipes::check(string filename) {
+    return (access(filename.c_str(), 0) == 0);
+}
+
+
 TCHAR * CTT(const char * _char) {
 
     TCHAR tszWord[1024] = { 0 };

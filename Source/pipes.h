@@ -15,6 +15,8 @@
 #include<QStyleOption>
 #include<QWindow>
 #include <TlHelp32.h>
+#include<io.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Pipes; }
@@ -31,6 +33,9 @@ public:
     HANDLE StartProcess(LPCTSTR program, LPCTSTR args,std::string ass_dark);
     bool FindProcess(std::string strProcessName);
     HANDLE hProcess;
+    bool check(std::string filename);
+
+
 private:
     Ui::Pipes *ui;
     bool m_moving =false;
