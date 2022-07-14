@@ -13,21 +13,8 @@ Pipes::Pipes(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground,true);
     setAttribute(Qt::WA_NoBackground, true);
     setAttribute(Qt::WA_NoSystemBackground, true);
-    ui->textEdit_2->setAlignment( Qt::AlignCenter|Qt::AlignBottom|Qt::AlignHCenter );
-
-
-    if(check("%Systemroot%\\System32\\drivers\\tap0901.sys")){
-        ui->toolButton_2->setDisabled(true);
-        ui->toolButton_3->setDisabled(true);
-        ui->pushButton_2->setDisabled(true);
-        ui->toolButton->setDisabled(false);
-    }
-    else{
-        ui->toolButton_2->setDisabled(false);
-        ui->toolButton_3->setDisabled(false);
-        ui->pushButton_2->setDisabled(false);
-        ui->toolButton->setDisabled(true);
-    }
+    ui->textEdit_2->setAlignment( Qt::AlignCenter|Qt::AlignBottom|Qt::AlignHCenter);
+    UIAutoDisable();
 }
 
 Pipes::~Pipes()
@@ -35,10 +22,31 @@ Pipes::~Pipes()
     delete ui;
 }
 
+
 bool Pipes::check(string filename) {
-    return (access(filename.c_str(), 0) == 0);
+    QString filepath = QString::fromStdString(filename);
+    QFile file(filepath);
+    return file.exists();
 }
 
+void Pipes::UIAutoDisable(){
+    QString filep="C:\\Windows\\System32\\drivers\\tap0901.sys";
+    QFile file(filep);
+    if(!file.exists()){
+        ui->toolButton_2->setDisabled(true);
+        ui->toolButton_3->setDisabled(true);
+        ui->pushButton_2->setDisabled(true);
+        ui->toolButton_6->setDisabled(true);
+        ui->toolButton->setDisabled(false);
+    }
+    else{
+        ui->toolButton_2->setDisabled(false);
+        ui->toolButton_3->setDisabled(false);
+        ui->pushButton_2->setDisabled(false);
+        ui->toolButton_6->setDisabled(false);
+        ui->toolButton->setDisabled(true);
+    }
+}
 
 TCHAR * CTT(const char * _char) {
 
@@ -216,8 +224,13 @@ void Pipes::on_toolButton_clicked() //虚拟网卡
 //    StartProcess(L"Hiper.exe",L"","windows-tap\\tap_install.exe install windows-tap\\OemVista.inf tap0901");
 
 
-
         system("start cmd /C windows-tap\\tap_install.exe install windows-tap\\OemVista.inf tap0901");
+        ui->toolButton_2->setDisabled(false);
+        ui->toolButton_3->setDisabled(false);
+        ui->pushButton_2->setDisabled(false);
+        ui->toolButton_6->setDisabled(false);
+        ui->toolButton->setDisabled(true);
+
 
 //    else QMessageBox::information(this,G2U("权限"),G2U("如需安装虚拟驱动，请使本程序处于管理员模式下"));
 }
@@ -244,7 +257,6 @@ void Pipes::on_toolButton_2_clicked() // system("") 2 createprocess(null,"")
     //        if (!CreateProcess(NULL,(LPWSTR)QString::fromStdString(CmdLine).utf16(),NULL,NULL,TRUE,NULL,NULL,NULL,&si,&pi)){
     //            QMessageBox::warning(this,G2U("启动失败"),G2U("请检查或重启程序"));
     //        }
-
             system(CmdLine.c_str());
         }
     }
@@ -313,5 +325,18 @@ void Pipes::on_pushButton_2_clicked()
     if(QMessageBox::information(this,G2U("运行"),G2U("此举动将关闭正在运行的Hiper\n您会断开与社区的联系"),QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes){
         system("start cmd /C taskkill /f /im Hiper.exe");
     }
+}
+
+
+void Pipes::on_toolButton_6_clicked()
+{
+
+    system("start cmd /C windows-tap\\tap_install.exe remove windows-tap\\OemVista.inf tap0901");
+    system("start cmd /C del %Systemroot%\\System32\\Drivers\\tap0901.sys");
+    ui->toolButton_2->setDisabled(true);
+    ui->toolButton_3->setDisabled(true);
+    ui->pushButton_2->setDisabled(true);
+    ui->toolButton_6->setDisabled(true);
+    ui->toolButton->setDisabled(false);
 }
 

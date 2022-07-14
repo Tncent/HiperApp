@@ -34,7 +34,7 @@ public:
     bool FindProcess(std::string strProcessName);
     HANDLE hProcess;
     bool check(std::string filename);
-
+    void UIAutoDisable();
 
 private:
     Ui::Pipes *ui;
@@ -44,6 +44,7 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+
 private slots:
     void on_toolButton_clicked();
     void on_toolButton_2_clicked();
@@ -52,5 +53,6 @@ private slots:
     void on_toolButton_4_clicked();
     void on_toolButton_5_clicked();
     void on_pushButton_2_clicked();
+    void on_toolButton_6_clicked();
 };
 #endif // PIPES_H
