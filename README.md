@@ -35,3 +35,5 @@ Hiper图形化程序
 或加入Mcer.cn 官方群聊了解详情 
 
 ![q群](https://raw.githubusercontent.com/Tncent/HiperApp/main/Image/Pic7.png)
+
+Hiper作者 : 猫猫
