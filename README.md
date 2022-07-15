@@ -26,8 +26,10 @@ Hiper图形化程序
 启动Hiper前请清楚占用Tap启动的程序如 Clash 与众多 代理软件
 
 3. 更多帮助
+
 ![帮助](https://raw.githubusercontent.com/Tncent/HiperApp/main/Image/Pic5.png)
 点击此处 将打开 ![MCER.CN](https://mcer.cn) 暨 Hiper Matrix Cato IOI 平台论坛
 
 或加入Mcer.cn 官方群聊了解详情 
+
 ![q群](https://raw.githubusercontent.com/Tncent/HiperApp/main/Image/Pic7.png)
